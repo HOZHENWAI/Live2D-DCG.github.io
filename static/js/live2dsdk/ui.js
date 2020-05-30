@@ -76,7 +76,7 @@ function updateViewer(id) {
 }
 
 function loadChilds(callback) {
-  $.getJSON('../static/json/childs.json', function(_childs) {
+  $.getJSON('static/json/childs.json', function(_childs) {
     childs = _childs
     callback()
   })
@@ -102,7 +102,7 @@ function getLabel(id) {
   )
 }
 function loadAssets(callback) {
-  $.getJSON('../static/json/assets.json', function(data) {
+  $.getJSON('static/json/assets.json', function(data) {
     $.each(data, function(i, asset) {
       var id = asset.id
       selectedModel = selectedModel || id

@@ -14,9 +14,9 @@ function totsugeki() {
 
 function initModel(pathDir) {
 	if (pathDir == 'kr'){
-		dir = "/static/Korean/"
+		dir = "static/Korean/"
 	} else 
-		dir = "/static/Global/"
+		dir = "static/Global/"
 	
 	
   // get variables from GET
@@ -208,7 +208,7 @@ function getPath(pathDir, file) {
 function getWebGLContext(canvas) {
   // try different WebGl kits
   var kits = ['webgl', 'experimental-webgl', 'webkit-3d', 'moz-webgl']
-  var param = { alpha: true, premultipliedAlpha: true }
+  var param = { alpha: true, premultipliedAlpha: true, preserveDrawingBuffer: true }
 
   for(var i = 0; i < kits.length; i++) {
     try {
