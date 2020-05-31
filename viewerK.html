@@ -22,6 +22,9 @@
     <script src="static/js/live2dsdk/ModelSettingJson.js"></script>
 	<script src="static/js/live2dsdk/yukimiku.2d.js"></script>
 
+  <script type="text/javascript" src="static/jszip/dist/jszip.js"></script>
+  <script type="text/javascript" src="static/jszip/test/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="static/jszip/vendor/FileSaver.js"></script>
 
 <body onload="initModel('kr')" style="margin: 0; padding: 0;">
     <canvas id="canvas" class="maxwidth" width="500px" height="800px" style="margin: 10px;" onclick="totsugeki()"></canvas>
@@ -29,6 +32,48 @@
     <script>
         let canvas = document.getElementById("canvas");
     </script>
+    <p>Please using this js console script below.</p>
+    <pre>
+var shots = [];
+var grabLimit = 250; // total number of capture;
+var grabRate = 20; // millisecond;
+var count = 0;
+
+var childName = "c417_02" // child code name;
+
+function sleep (delay) {
+  var start = new Date().getTime();
+  while (new Date().getTime() < start + delay);
+}
+
+function getResults() {
+  var zip = new JSZip();
+  for (var i = 0; i < shots.length; i++) {
+    var filename = childName + "_" + i + ".png";
+    zip.file(filename, shots[i], {binary:true});
+  }
+  zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
+  })
+  .then(function callback(blob) {
+    saveAs(blob, childName + ".zip");
+  }, function (e) {
+    showError(e);
+  });
+}
+
+var grabber = setInterval(function(){
+  count++;
+  if (count > grabLimit) {
+    clearInterval(grabber);
+    getResults();
+  }
+
+  var encodedImg = canvas.toDataURL("image/png").replace("data:image/png;base64,", "");
+  var img = window.atob(encodedImg);
+  shots.push(img);
+
+}, grabRate);
+    </pre>
 </body>
 
 </html>
