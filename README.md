@@ -1,10 +1,11 @@
-> To Do List:
-1. Upload any missing Global Monster asset files 
-1. Replace all Spa files with Global.
-1. Include Uncensored files to compare to global
+For offline usage:
 
-> Log Change:
+Install NodeJs - https://nodejs.org/en/
 
-* 01/09/2020 - Allow you to Scale and move the Live2D model.
-* 01/04/2020 - Fixed all bad visual texture files
-* 12/28/2019 - Inital Commit
+Install Yarn -https://yarnpkg.com/
+
+Open Command Line, change directory to the Live2D-DCG folder.
+Afterwards, type "yarn start"", it start say starting up http-server ....
+
+Go to your web broswer and type http://localhost:8080/index.html
+
